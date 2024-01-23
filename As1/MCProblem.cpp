@@ -35,6 +35,12 @@ struct State
                cannibals == other.cannibals &&
                boatSide == other.boatSide;
     }
+    bool operator!=(const State &other) const
+    {
+        return missionaries != other.missionaries &&
+               cannibals != other.cannibals &&
+               boatSide != other.boatSide;
+    }
 };
 
 // constants
@@ -77,10 +83,13 @@ int main()
 //
 bool ValidState(const State &state)
 {
-    bool outOfBounds = (state.missionaries < 0 || state.missionaries > 3) || (state.cannibals < 0 || state.cannibals > 3);
-    bool notOutNumbered = state.missionaries == 0 || state.missionaries >= state.cannibals;
+    // bool
+    // bool outOfBounds = (state.missionaries < 0 || state.missionaries > 3) || (state.cannibals < 0 || state.cannibals > 3);
+    // bool notOutNumbered = state.missionaries >= state.cannibals && state.missionaries >= 0;
     // check if state is valid (no missionaries outnummber by cannibals)
-    return notOutNumbered && !outOfBounds;
+    return state.missionaries >= 0 && state.cannibals >= 0 &&
+           (state.missionaries == 0|| state.missionaries >= state.cannibals) &&
+           (3 - state.missionaries == 0 || (3 - state.missionaries) >= (3 - state.cannibals));
 }
 
 bool StatExsits(const State &state)
