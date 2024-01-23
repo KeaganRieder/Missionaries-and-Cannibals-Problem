@@ -21,8 +21,8 @@ using namespace std;
 // struct used to store every varible which relates to a state
 struct State
 {
-    int missionariesLeft;
-    int cannibalsLeft;
+    int missionaries;
+    int cannibals;
 
     int boatSide; // 0 for left, 1 for right
 
@@ -31,8 +31,8 @@ struct State
 
     bool operator==(const State &other) const
     {
-        return missionariesLeft == other.missionariesLeft &&
-               cannibalsLeft == other.cannibalsLeft &&
+        return missionaries == other.missionaries &&
+               cannibals == other.cannibals &&
                boatSide == other.boatSide;
     }
 };
@@ -77,8 +77,10 @@ int main()
 //
 bool ValidState(const State &state)
 {
+    bool outOfBounds = (state.missionaries < 0 || state.missionaries > 3) || (state.cannibals < 0 || state.cannibals > 3);
+    bool notOutNumbered = state.missionaries == 0 || state.missionaries >= state.cannibals;
     // check if state is valid (no missionaries outnummber by cannibals)
-    return (state.missionariesLeft == 0 || state.missionariesLeft >= state.cannibalsLeft);
+    return notOutNumbered && !outOfBounds;
 }
 
 bool StatExsits(const State &state)
@@ -94,7 +96,7 @@ bool Solved(const State &state)
 
 string FormatState(const State &state)
 {
-    string formatedState = to_string(state.missionariesLeft) + "," + to_string(state.cannibalsLeft) +
+    string formatedState = to_string(state.missionaries) + "," + to_string(state.cannibals) +
                            "|" + to_string(state.boatSide);
     return formatedState;
 }
@@ -109,13 +111,14 @@ void GenerateNextState(const State &currentState)
         // on left
         if (currentState.boatSide == 0)
         {
-            nextState = {currentState.missionariesLeft - moves.first, currentState.cannibalsLeft - moves.second, 1 - currentState.boatSide};
+            nextState = {currentState.missionaries - moves.first, currentState.cannibals - moves.second, 1 - currentState.boatSide};
             nextState.move = "move missionaries: " + to_string(moves.first) + " | cannibals " + to_string(moves.second) + " right";
         }
         // on right
         else
         {
-            nextState = {currentState.missionariesLeft + moves.first, currentState.cannibalsLeft + moves.second, 1 - currentState.boatSide};
+            //negtiave is produced here need fixed
+            nextState = {currentState.missionaries + moves.first, currentState.cannibals + moves.second, 1 - currentState.boatSide};
             nextState.move = "move missionaries: " + to_string(moves.first) + " | cannibals: " + to_string(moves.second) + " left";
         }
         // making sure nextState is valid and not visted yet
@@ -165,15 +168,15 @@ void OuputSolution()
     {
         State current = states[stateKey];
         cout << "> Step " << current.step << "\n";
-        cout << "> cannibals left Side : " << to_string(current.cannibalsLeft) << " | Missionaries left Side : " << to_string(current.missionariesLeft) << "\n";
-        cout << "> cannibals right Side : " << to_string(3 - current.cannibalsLeft) << " | Missionaries right Side : " << to_string(3 - current.missionariesLeft) << "\n";
+        cout << "> cannibals left Side : " << to_string(current.cannibals) << " | Missionaries left Side : " << to_string(current.missionaries) << "\n";
+        cout << "> cannibals right Side : " << to_string(3 - current.cannibals) << " | Missionaries right Side : " << to_string(3 - current.missionaries) << "\n";
         cout << "> " << current.move << "\n\n";
 
         stateKey = stateOrder[stateKey];
     }
     cout << "> Start \n";
-    cout << "> cannibals left Side : " << to_string(states[FormatState(inital)].cannibalsLeft)
-         << " | Missionaries left Side : " << to_string(states[FormatState(inital)].missionariesLeft) << "\n";
-    cout << "> cannibals right Side : " << to_string(3 - states[FormatState(inital)].cannibalsLeft)
-         << " | Missionaries right Side : " << to_string(3 - states[FormatState(inital)].missionariesLeft) << "\n";
+    cout << "> cannibals left Side : " << to_string(states[FormatState(inital)].cannibals)
+         << " | Missionaries left Side : " << to_string(states[FormatState(inital)].missionaries) << "\n";
+    cout << "> cannibals right Side : " << to_string(3 - states[FormatState(inital)].cannibals)
+         << " | Missionaries right Side : " << to_string(3 - states[FormatState(inital)].missionaries) << "\n";
 }

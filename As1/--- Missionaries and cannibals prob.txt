@@ -1,0 +1,53 @@
+--- Missionaries and cannibals problem solver---
+it takes a total of 9 steps to get all the Missionaries and cannibals
+from one side to the other.
+the following are the steps required to do this:
+
+> Step 9
+> cannibals left Side : 0 | Missionaries left Side : 0
+> cannibals right Side : 3 | Missionaries right Side : 3
+> move missionaries: 1 | cannibals 1 right
+
+> Step 8
+> cannibals left Side : 1 | Missionaries left Side : 1
+> cannibals right Side : 2 | Missionaries right Side : 2
+> move missionaries: 1 | cannibals: 0 left
+
+> Step 7
+> cannibals left Side : 1 | Missionaries left Side : 0
+> cannibals right Side : 2 | Missionaries right Side : 3
+> move missionaries: 2 | cannibals 0 right
+
+> Step 6
+> cannibals left Side : 1 | Missionaries left Side : 2
+> cannibals right Side : 2 | Missionaries right Side : 1
+> move missionaries: 1 | cannibals: 0 left
+
+> Step 5
+> cannibals left Side : 1 | Missionaries left Side : 1
+> cannibals right Side : 2 | Missionaries right Side : 2
+> move missionaries: 2 | cannibals 0 right
+
+> Step 4
+> cannibals left Side : 1 | Missionaries left Side : 3
+> cannibals right Side : 2 | Missionaries right Side : 0
+> move missionaries: 0 | cannibals: 1 left
+
+> Step 3
+> cannibals left Side : 0 | Missionaries left Side : 3
+> cannibals right Side : 3 | Missionaries right Side : 0
+> move missionaries: 0 | cannibals 2 right
+
+> Step 2
+> cannibals left Side : 2 | Missionaries left Side : 3
+> cannibals right Side : 1 | Missionaries right Side : 0
+> move missionaries: 0 | cannibals: 1 left
+
+> Step 1
+> cannibals left Side : 1 | Missionaries left Side : 3
+> cannibals right Side : 2 | Missionaries right Side : 0
+> move missionaries: 0 | cannibals 2 right
+
+> Start
+> cannibals left Side : 3 | Missionaries left Side : 3
+> cannibals right Side : 0 | Missionaries right Side : 0
