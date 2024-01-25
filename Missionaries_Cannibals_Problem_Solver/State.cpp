@@ -62,7 +62,9 @@ bool State::ValidState()
     bool notOutNumber = (LeftMissionaries() == 0 || LeftMissionaries() >= LeftCannibals()) &&
                         (RightMissionaries() == 0 || RightMissionaries() >= RightCannibals());
 
-    return notOutNumber;
+    bool validAmount = (missionaries >= 0 && missionaries <= 3) && (cannibals >= 0 && cannibals <= 3);
+
+    return notOutNumber && validAmount;
 }
 
 bool State::IsGoalState()
