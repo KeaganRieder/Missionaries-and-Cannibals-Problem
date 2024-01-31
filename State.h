@@ -23,8 +23,7 @@ public:
 
     //
     // getters and setters
-    //
-   
+    //   
     void SetMissionaries(int missionaries);
 
     void SetCannibals(int cannibals);
@@ -53,7 +52,6 @@ public:
     {
         return missionaries == other.missionaries &&
                cannibals == other.cannibals &&
-               boatOnLeft == other.boatOnLeft &&
-               step == other.step;
+               boatOnLeft == other.boatOnLeft;
     }
 };

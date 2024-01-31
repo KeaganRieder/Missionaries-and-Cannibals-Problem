@@ -16,10 +16,11 @@ using namespace std;
 //
 //constants and global values
 //
-const vector<pair<int,int>> ACTIONS = {{1, 0}, {2, 0},{1, 1}, {0, 1}, {0, 2}};
+const vector<pair<int,int>> ACTIONS = {{1, 1},{1, 0}, {0, 1}, {2, 0}, {0, 2}};
 
 queue<State*> stateQueue;
 vector<State*> states;
+
 //
 //function Decleration
 //
@@ -40,7 +41,6 @@ int main(){
 //function implemenation
 //
 bool StateExsits(State* state){
-     //auto state2 = find(states.begin(),states.end(),state);
     for (int i = 0; i < states.size(); i++)
     {
         if (states[i] == state)
@@ -81,8 +81,7 @@ void GetNextStates(State* lastState){
         }
 
         State* nextState = new State(missionaries,cannibals,step,actions,boatOnLeft);
-        // 
-
+    
         //is next state Valid and if it exsits already
         if (nextState->ValidState() && !StateExsits(nextState))
         {           

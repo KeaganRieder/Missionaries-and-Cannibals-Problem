@@ -15,7 +15,7 @@ differnt states (defined in State class) in the problem by doing the folowing 5 
 * move 0 cannibal, 2 missionary
 * move 1 cannibal, 1 missionary
 
-these actions are stored in a const vector<pair<int,int>> (call ACTIONS, found in main.cpp) and are either subtracted (boat on left) or 
+these actions are stored in a const vector<pair<int,int>> (called ACTIONS, found in main.cpp) and are either subtracted (boat on left) or 
 added (boat on right) to the total missionaries or cannibles
 
 ### State Class Overview 
@@ -50,4 +50,5 @@ BoatOnLeft = false (meaing it's on left)
 
 ### Final Notes
 * when a state is created it is first check if it's valid and isn't already presnt in the gloabl value "vector<State*> states;" 
-found in main.cpp, this allows for States and folowing States to not be reexamined
+found in main.cpp, this allows for States and folowing States to not be re-examined. Ensuring that eventaully the program will
+end due to running out of possible states
